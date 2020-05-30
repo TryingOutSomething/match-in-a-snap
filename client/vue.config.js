@@ -14,6 +14,10 @@ module.exports = {
         secure: false,
         changeOrigin: true
       }
+    },
+    overlay: {
+      warnings: true,
+      errors: true
     }
   }
 };

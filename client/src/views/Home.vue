@@ -1,18 +1,30 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-content>
+    <v-app id="home-view">
+      <router-view />
+    </v-app>
+  </v-content>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  name: "Home",
+  metaInfo() {
+    return {
+      title: "Match-In-A-Snap"
+    };
   }
-}
+};
 </script>
+
+<style>
+#home-view {
+  background: linear-gradient(
+    to bottom,
+    #dae3f3 0%,
+    #dae3f3 30%,
+    #ffffff 30%,
+    #ffffff 100%
+  );
+}
+</style>
