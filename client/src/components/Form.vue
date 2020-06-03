@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="mx-auto" width="600px">
+    <v-card class="mx-auto mt-12" width="600px" height="821px" elevation="3">
       <v-row>
         <v-col>
           <v-card-title class="display-1 pt-5 justify-center">
@@ -26,6 +26,7 @@
       <v-divider></v-divider>
 
       <user-preference />
+      <!-- <alert-box /> -->
     </v-card>
 
     <footer-base></footer-base>
@@ -34,13 +35,15 @@
 
 <script>
 import FooterBase from "@/components/core/Footer";
-import UserPreference from "@/components/core/UserPreference";
+import UserPreference from "@/components/UserPreference";
+import AlertBox from "@/components/core/AlertBox";
 
 export default {
   name: "Form",
   components: {
     FooterBase,
-    UserPreference
+    UserPreference,
+    AlertBox
   },
 
   data: () => ({

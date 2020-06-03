@@ -1,11 +1,5 @@
 <template>
-  <v-footer id="core-footer" absolute color="#ffffff">
-    <!-- <div>
-      <span v-for="(link, index) in links" :key="link.name">
-        <a :href="link.url" target="_blank">{{ link.name }}</a>
-        <span v-if="index != links.length - 1"> | </span>
-      </span>
-    </div> -->
+  <v-footer id="core-footer" absolute color="#ffffff" height="40%">
     <v-row class="mb-4" justify="center">
       <span v-for="(link, index) in links" :key="link.name">
         <a :href="link.url" target="_blank">{{ link.name }}</a>
@@ -21,9 +15,9 @@ export default {
   data: () => ({
     links: [
       { name: "Terms of use", url: "#" },
-      { name: "Instagram", url: "#" },
-      { name: "Facebook", url: "#" },
-      { name: "Website", url: "#" },
+      { name: "Instagram", url: "https://www.instagram.com/snapee.co/" },
+      { name: "Facebook", url: "https://www.facebook.com/snapee.co/" },
+      { name: "Website", url: "https://www.snapee.co/" },
       { name: "Feedback", url: "#" }
     ]
   })
