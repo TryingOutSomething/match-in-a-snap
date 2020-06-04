@@ -1,6 +1,6 @@
 <template>
   <v-footer id="core-footer" absolute color="#ffffff" height="40%">
-    <v-row class="mb-4" justify="center">
+    <v-row justify="center">
       <span v-for="(link, index) in links" :key="link.name">
         <a :href="link.url" target="_blank">{{ link.name }}</a>
         <span class="mr-1" v-if="index != links.length - 1"> | </span>

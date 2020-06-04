@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-card class="mx-auto mt-12" width="600px" height="821px" elevation="3">
-      <base-form />
-      <!-- <search-result /> -->
+    <v-card class="mx-auto mt-12" width="600px" elevation="3">
+      <!-- <base-form /> -->
+      <search-result />
       <!-- <alert-box /> -->
     </v-card>
     <footer-base />

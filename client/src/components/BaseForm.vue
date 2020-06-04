@@ -24,8 +24,8 @@
 
     <v-divider></v-divider>
 
-    <!-- <user-preference /> -->
-    <loading-screen />
+    <user-preference />
+    <!-- <loading-screen /> -->
   </v-container>
 </template>
 
