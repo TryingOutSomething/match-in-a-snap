@@ -3,7 +3,7 @@
     <v-img :src="imageUrl" width="600px" height="300px"></v-img>
 
     <v-row>
-      <v-col>
+      <v-col class="pt-2">
         <v-card-subtitle class="pa-0">
           Image source: {{ imageUrl }}
         </v-card-subtitle>
