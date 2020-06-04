@@ -12,9 +12,7 @@ export default [
           name: "User Preference"
         },
         component: () =>
-          import(
-            /* webpackChunkName: "home" */ "@/components/Form.vue"
-          )
+          import(/* webpackChunkName: "home" */ "@/components/BaseCard.vue")
       },
       {
         path: "/terms",
