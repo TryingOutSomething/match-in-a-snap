@@ -2,14 +2,14 @@
   <v-dialog v-model="dialog" persistent width="650px">
     <v-card>
       <v-card-title class="display-1 pt-10 justify-center font-weight-regular">
-        Enjoy Your Meal!
+        I would like to
       </v-card-title>
 
       <v-card-actions class="justify-center">
         <v-btn class="ma-4 px-5" color="#FFD966">
-          Next Location
+          See next 10 choices
         </v-btn>
-        <v-btn class="ma-4 px-5" color="#FFDF10">Feedback</v-btn>
+        <v-btn class="ma-4 px-5" color="#FFDF10">Change preferences</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "AlertBox",
+  name: "RejectAlertBox",
   data: () => ({
     dialog: true
   })

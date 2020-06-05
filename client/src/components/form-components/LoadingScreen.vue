@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-row justify="center pa-12">
+        <v-row justify="center" class="pa-12">
           <vue-loaders-ball-pulse
             color="#616161"
             scale="1"

@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style scoped>
-a {
+.v-application a {
   color: #616161;
 }
 </style>

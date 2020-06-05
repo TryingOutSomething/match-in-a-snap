@@ -13,3 +13,9 @@
     </p>
   </v-container>
 </template>
+
+<script>
+export default {
+  name: "TermsOfUse"
+};
+</script>

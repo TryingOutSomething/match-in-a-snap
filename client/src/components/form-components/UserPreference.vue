@@ -12,7 +12,10 @@
             dense
             outlined
             clearable
+            autofocus
+            type="number"
             :color="inputBorderFocusColour"
+            v-model="userPreference.postalCode"
           ></v-text-field>
         </v-col>
         <v-col class="pt-0 mt-n5" sm="11" cols="11">
@@ -24,16 +27,17 @@
                 outlined
                 clearable
                 :color="inputBorderFocusColour"
+                v-model="userPreference.age"
               ></v-text-field>
             </v-col>
             <v-col class="pt-2">
               <v-select
-                v-model="gender"
                 :items="genderList"
                 label="Gender"
                 dense
                 outlined
                 :color="inputBorderFocusColour"
+                v-model="userPreference.gender"
               ></v-select>
             </v-col>
           </v-row>
@@ -44,10 +48,16 @@
         </v-col>
         <v-col sm="10" cols="12">
           <v-row justify="center">
-            <v-chip-group multiple column :active-class="chipSelectedColour">
+            <v-chip-group
+              multiple
+              column
+              :active-class="chipSelectedColour"
+              v-model="userPreference.mealChoice"
+            >
               <v-chip
                 class="mx-4 my-2 px-5"
                 v-for="choice in meals"
+                :value="choice"
                 :key="choice"
               >
                 {{ choice }}
@@ -61,10 +71,16 @@
         </v-col>
         <v-col sm="10" cols="12" class="ml-10">
           <v-row justify="center">
-            <v-chip-group multiple column :active-class="chipSelectedColour">
+            <v-chip-group
+              multiple
+              column
+              :active-class="chipSelectedColour"
+              v-model="userPreference.dietaryChoice"
+            >
               <v-chip
                 class="mx-4 my-2 px-5"
                 v-for="option in dietaryOptions"
+                :value="option"
                 :key="option"
               >
                 {{ option }}
@@ -75,18 +91,28 @@
       </v-row>
 
       <v-card-actions class="justify-center">
-        <v-btn class="mt-4 mb-6 pa-7" large color="#FFDF10">Surprise Me!</v-btn>
+        <v-btn
+          class="mt-4 mb-6 pa-7"
+          large
+          color="#FFDF10"
+          @click="searchRestaurants"
+          >Surprise Me!</v-btn
+        >
       </v-card-actions>
     </v-form>
   </v-container>
 </template>
 
 <script>
+import {
+  INPUT_FOCUS_BORDER_COLOUR,
+  SELECTED_CHIP_COLOUR
+} from "@/constants/form-constants";
+
 export default {
   name: "UserPreference",
   data: () => ({
     genderList: ["Male", "Female"],
-    gender: "Male",
     meals: ["Breakfast", "Lunch", "Dinner"],
     dietaryOptions: [
       "Vegetarian",
@@ -96,9 +122,19 @@ export default {
       "Pescatarian",
       "Gluten-Free"
     ],
-    inputBorderFocusColour: "yellow darken-3",
-    chipSelectedColour: "yellow--text text--darken-4"
-  })
+    inputBorderFocusColour: INPUT_FOCUS_BORDER_COLOUR,
+    chipSelectedColour: SELECTED_CHIP_COLOUR,
+
+    userPreference: {}
+  }),
+
+  methods: {
+    searchRestaurants() {
+      this.$store
+        .dispatch("find-restaurants/SEARCH_RESTAURANTS", this.userPreference)
+        .catch(err => console.log(err));
+    }
+  }
 };
 </script>
 
