@@ -1,5 +1,11 @@
 <template>
   <v-container>
+    <snackbar
+      v-model="snackSettings.isVisible"
+      :colour="snackSettings.colour"
+      :text="snackSettings.text"
+    />
+
     <v-form ref="user-preference">
       <v-row justify="center">
         <v-col class="pb-0 pt-0" sm="11" cols="11">
@@ -12,13 +18,13 @@
             dense
             outlined
             clearable
-            autofocus
             type="number"
             :color="inputBorderFocusColour"
+            :rules="[validation.required]"
             v-model="userPreference.postalCode"
           ></v-text-field>
         </v-col>
-        <v-col class="pt-0 mt-n5" sm="11" cols="11">
+        <v-col class="pt-0 mt-n4" sm="11" cols="11">
           <v-row class="mb-n10">
             <v-col class="pt-2">
               <v-text-field
@@ -26,7 +32,9 @@
                 dense
                 outlined
                 clearable
+                type="number"
                 :color="inputBorderFocusColour"
+                :rules="[validation.required]"
                 v-model="userPreference.age"
               ></v-text-field>
             </v-col>
@@ -37,6 +45,7 @@
                 dense
                 outlined
                 :color="inputBorderFocusColour"
+                :rules="[validation.required]"
                 v-model="userPreference.gender"
               ></v-select>
             </v-col>
@@ -104,35 +113,63 @@
 </template>
 
 <script>
-import {
-  INPUT_FOCUS_BORDER_COLOUR,
-  SELECTED_CHIP_COLOUR
-} from "@/constants/form-constants";
+import { mapState, mapMutations } from "vuex";
+import Snackbar from "@/components/core/Snackbar";
+import * as formConstants from "@/constants/form-constants";
+import * as validationUtil from "@/utils/validation";
 
 export default {
   name: "UserPreference",
-  data: () => ({
-    genderList: ["Male", "Female"],
-    meals: ["Breakfast", "Lunch", "Dinner"],
-    dietaryOptions: [
-      "Vegetarian",
-      "Non beef",
-      "No Spicy",
-      "Halal",
-      "Pescatarian",
-      "Gluten-Free"
-    ],
-    inputBorderFocusColour: INPUT_FOCUS_BORDER_COLOUR,
-    chipSelectedColour: SELECTED_CHIP_COLOUR,
+  components: {
+    Snackbar
+  },
 
-    userPreference: {}
+  data: () => ({
+    genderList: formConstants.GENDER_OPTIONS,
+    meals: formConstants.MEAL_OPTIONS,
+    dietaryOptions: formConstants.DIETARY_OPTIONS,
+    inputBorderFocusColour: formConstants.INPUT_FOCUS_BORDER_COLOUR,
+    chipSelectedColour: formConstants.SELECTED_CHIP_COLOUR,
+
+    validation: { required: validationUtil.requiredField },
+
+    userPreference: formConstants.DEFAULT_USER_PREFERENCE_OBJECT
   }),
 
+  computed: {
+    ...mapState(["snackSettings"])
+  },
+
   methods: {
+    ...mapMutations(["TOGGLE_ERROR_NOTIFICATION"]),
+
     searchRestaurants() {
+      if (this.isInvalidForm()) {
+        return;
+      }
+
       this.$store
         .dispatch("find-restaurants/SEARCH_RESTAURANTS", this.userPreference)
         .catch(err => console.log(err));
+    },
+
+    isInvalidForm() {
+      if (validationUtil.isIncompleteForm(this.userPreference)) {
+        this.TOGGLE_ERROR_NOTIFICATION("Fields and options cannot be empty!");
+        return true;
+      }
+
+      if (validationUtil.isInvalidPostalCode(this.userPreference.postalCode)) {
+        this.TOGGLE_ERROR_NOTIFICATION("Postal code must be exactly 6 digits!");
+        return true;
+      }
+
+      if (validationUtil.isInvalidAge(this.userPreference.age)) {
+        this.TOGGLE_ERROR_NOTIFICATION("Invalid age!");
+        return true;
+      }
+
+      return false;
     }
   }
 };

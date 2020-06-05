@@ -7,14 +7,16 @@ export default {
       // toggle loading status
       commit("SET_LOADING_FORM_STATUS", null, { root: true });
 
-      FETCH_RESTAURANTS().then(response => {
-        commit("POPULATE_SEARCH_RESULTS", response);
-        // change to result status
-        
-        commit("SET_RESULT_FORM_STATUS", null, { root: true });
-        
-        resolve();
-      });
+      FETCH_RESTAURANTS()
+        .then(response => {
+          commit("POPULATE_SEARCH_RESULTS", response);
+          // change to result status
+
+          commit("SET_RESULT_FORM_STATUS", null, { root: true });
+
+          resolve();
+        })
+        .catch(err => err);
     });
   }
 };
