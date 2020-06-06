@@ -17,7 +17,7 @@ export const DIETARY_OPTIONS = [
     "Gluten-Free"
   ],
   MEAL_OPTIONS = ["Breakfast", "Lunch", "Dinner"],
-  GENDER_OPTIONS = ["Male", "Female"];
+  GENDER_OPTIONS = ["Male", "Female", "Rather Not Say"];
 
 export const DEFAULT_USER_PREFERENCE_OBJECT = {
   postalCode: "",
