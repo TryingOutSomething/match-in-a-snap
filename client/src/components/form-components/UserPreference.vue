@@ -131,13 +131,14 @@ export default {
     inputBorderFocusColour: formConstants.INPUT_FOCUS_BORDER_COLOUR,
     chipSelectedColour: formConstants.SELECTED_CHIP_COLOUR,
 
-    validation: { required: validationUtil.requiredField },
+    validation: { required: validationUtil.requiredField }
 
-    userPreference: formConstants.DEFAULT_USER_PREFERENCE_OBJECT
+    // userPreference: formConstants.DEFAULT_USER_PREFERENCE_OBJECT
   }),
 
   computed: {
-    ...mapState(["snackSettings"])
+    ...mapState(["snackSettings"]),
+    ...mapState("find-restaurants", ["userPreference"])
   },
 
   methods: {
@@ -147,6 +148,8 @@ export default {
       if (this.isInvalidForm()) {
         return;
       }
+
+      // add empty id here? then pass to backend
 
       this.$store
         .dispatch("find-restaurants/SEARCH_RESTAURANTS", this.userPreference)

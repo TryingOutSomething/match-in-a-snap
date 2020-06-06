@@ -3,8 +3,6 @@
     <v-card class="mx-auto mt-12" width="600px" elevation="3">
       <base-form v-show="!showingResults" />
       <search-result v-show="showingResults" />
-      <!-- <accept-modal /> -->
-      <!-- <reject-modal /> -->
     </v-card>
     <footer-base />
   </v-container>

@@ -79,34 +79,68 @@
 
         <v-col class="pb-0">
           <v-row justify="end">
-            <v-btn class="ma-4 px-5" color="#FFD966">
+            <v-btn
+              class="ma-4 px-5"
+              color="#FFD966"
+              @click="toggleRejectAlertModal = true"
+            >
               Next Choice
             </v-btn>
-            <v-btn class="ma-4 px-10" color="#FFDF10">I Like!</v-btn>
+            <v-btn
+              class="ma-4 px-10"
+              color="#FFDF10"
+              @click="toggleAcceptAlertModal = true"
+              >I Like!</v-btn
+            >
           </v-row>
           <v-row justify="end">
             <v-btn
               text
               class="font-italic font-weight-regular text-capitalize lighter"
+              @click="RESET_SEARCH_RESULTS"
             >
-              Change Postal Code / Preference
+              Change Postal Code / Preferences
             </v-btn>
           </v-row>
         </v-col>
       </v-row>
     </v-container>
+
+    <accept-alert v-model="toggleAcceptAlertModal" />
+    <reject-alert v-model="toggleRejectAlertModal" />
   </v-container>
 </template>
 
 <script>
+import AcceptAlert from "@/components/form-components/AcceptAlert";
+import RejectAlert from "@/components/form-components/RejectAlert";
+import { mapActions, mapMutations, mapState } from "vuex";
+
 export default {
   name: "SearchResult",
+  components: {
+    AcceptAlert,
+    RejectAlert
+  },
+
   data: () => ({
     imageUrl:
       "https://static.rootsrated.com/image/upload/s--LbVVifxy--/t_rr_large_natural/a582hei6yo6itc6fvdjl.jpg",
 
-    snapeeLogo: require("@/assets/snapee-logo.png")
-  })
+    snapeeLogo: require("@/assets/snapee-logo.png"),
+
+    toggleAcceptAlertModal: false,
+    toggleRejectAlertModal: false
+  }),
+
+  computed: {
+    ...mapState("find-restaurants", ["viewingRestaurant"])
+  },
+
+  methods: {
+    ...mapActions("find-restaurants", ["RESET_SEARCH_RESULTS"]),
+    ...mapMutations("find-restaurants", ["DISPLAY_NEXT_RESTAURANT"])
+  }
 };
 </script>
 

@@ -1,13 +1,13 @@
-import { FETCH_RESTAURANTS } from "@/services/mock-api";
+import { FETCH_RESTAURANTS as fetchRestaurants } from "@/services/mock-api";
 
 export default {
   SEARCH_RESTAURANTS({ commit }, userPreference) {
     return new Promise((resolve, reject) => {
-      // save to local storage
-      // toggle loading status
+      localStorage.setItem("userPreference", JSON.stringify(userPreference));
+
       commit("SET_LOADING_FORM_STATUS", null, { root: true });
 
-      FETCH_RESTAURANTS()
+      fetchRestaurants()
         .then(response => {
           commit("POPULATE_SEARCH_RESULTS", response);
           // change to result status
@@ -16,7 +16,12 @@ export default {
 
           resolve();
         })
-        .catch(err => err);
+        .catch(err => reject(err));
     });
+  },
+
+  RESET_SEARCH_RESULTS({ commit }) {
+    // commit("CLEAR_FETCHED_RESULTS");
+    commit("SET_EDITING_FORM_STATUS", null, { root: true });
   }
 };
