@@ -1,9 +1,7 @@
 <template>
   <v-container>
-    <v-card class="mx-auto mt-12" width="600px" elevation="3">
-      <base-form v-show="!showingResults" />
-      <search-result v-show="showingResults" />
-    </v-card>
+    <base-form v-show="!showingResults" />
+    <search-result v-show="showingResults" />
     <footer-base />
   </v-container>
 </template>
