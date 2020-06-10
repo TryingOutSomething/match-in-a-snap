@@ -12,9 +12,10 @@
 <script>
 export default {
   name: "Footer",
+
   data: () => ({
     links: [
-      { name: "Terms of use", url: "#" },
+      { name: "Terms of use", url: `${window.location.href}terms` },
       { name: "Instagram", url: "https://www.instagram.com/snapee.co/" },
       { name: "Facebook", url: "https://www.facebook.com/snapee.co/" },
       { name: "Website", url: "https://www.snapee.co/" },
