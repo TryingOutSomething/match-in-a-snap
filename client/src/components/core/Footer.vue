@@ -19,7 +19,11 @@ export default {
       { name: "Instagram", url: "https://www.instagram.com/snapee.co/" },
       { name: "Facebook", url: "https://www.facebook.com/snapee.co/" },
       { name: "Website", url: "https://www.snapee.co/" },
-      { name: "Feedback", url: "#" }
+      {
+        name: "Feedback",
+        url:
+          "https://docs.google.com/forms/d/e/1FAIpQLScDppvV9QseBWeexi4q6OXVT8UPL5ABfmoWdtIbCVbQ2bjXJA/viewform"
+      }
     ]
   })
 };

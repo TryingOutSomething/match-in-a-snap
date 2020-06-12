@@ -1,6 +1,15 @@
 <template>
   <v-container>
-    <v-img :src="imageUrl" width="600px" height="300px"></v-img>
+    <v-img :src="imageUrl" width="600px" height="300px">
+      <template v-slot:placeholder>
+        <v-row class="fill-height ma-0" align="center" justify="center">
+          <v-progress-circular
+            indeterminate
+            color="grey lighten-5"
+          ></v-progress-circular>
+        </v-row>
+      </template>
+    </v-img>
 
     <v-row>
       <v-col class="pt-2">
@@ -127,7 +136,7 @@ export default {
     imageUrl:
       "https://static.rootsrated.com/image/upload/s--LbVVifxy--/t_rr_large_natural/a582hei6yo6itc6fvdjl.jpg",
 
-    snapeeLogo: require("@/assets/snapee-logo.png"),
+    snapeeLogo: require("@/assets/snapee-logo-no-text.png"),
 
     toggleAcceptAlertModal: false,
     toggleRejectAlertModal: false
