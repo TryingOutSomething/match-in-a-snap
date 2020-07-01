@@ -1,3 +1,5 @@
+const { isValidMealOption } = require('../utils/date_util');
+
 const isValidRequestBody = (req, res, next) => {
   if (!req.body) {
     return res.status(401).send('Request body cannot be empty!');
@@ -18,6 +20,7 @@ const isValidRestaurantParams = (req, res, next) => {
 
   if (!requestQueries ||
     !('currentPage' in requestQueries) ||
+    !('mealOption' in requestQueries) ||
     !('postalCode' in requestQueries)
   ) {
     return res.status(401).send('Certain request params are invalid!');
@@ -35,6 +38,10 @@ const isValidRestaurantParams = (req, res, next) => {
     req.query.dietaryOptions = req.query.dietaryOptions.split(', ');
   } else {
     req.query.dietaryOptions = null;
+  }
+
+  if (!isValidMealOption(requestQueries.mealChoice)) {
+    return res.status(401).send('Invalid meal choice!');
   }
 
   req.query.currentPage = parseInt(req.query.currentPage);
