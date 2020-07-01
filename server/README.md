@@ -28,12 +28,20 @@ server
 |   |   +-- database-configs.js
 |   |   +-- server-configs.js
 |   +-- controllers (Controls the business logic of routes defined)
+|   |   +-- restaurant-locator.js
 |   +-- db
 |   |   +-- models (Schema of db goes here)
+|   |   |   +-- restaurants.js
 |   |   +-- index.js
+|   +-- mappers (Controls the data to be returned back to the client)
+|   |   +-- restaurant-mapper.js
+|   +-- middlewares (Validate and process requests from the client)
+|   |   +-- request-validation.js
 |   +-- routers (Defines the API routes for the server)
 |   |   +-- routes.js
-|   +-- services (Handles the business logic of each feature)
+|   +-- services (Handles the business logic of each feature in Controllers)
+|   |   +-- api.js
+|   |   +-- restaurant.js
 |   +-- .env
 |   +-- index.js (Main app)
 |   +-- package-lock.json

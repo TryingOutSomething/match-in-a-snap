@@ -7,9 +7,21 @@ const getTodayDate = () => {
 };
 
 const getCurrentTime = () => {
+  // Get 24hrs of current time in HH:MM
+  return new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+};
 
+const isWithinBusinessHours = (restaurantTiming) => {
+  let businessHours = restaurantTiming.split('-');
+  let startTime = parseInt(businessHours[0].replace(':', ''));
+  let endTime = parseInt(businessHours[1].replace(':', ''));
+
+  let currentTime = parseInt(getCurrentTime().replace(':', ''));
+
+  return startTime <= currentTime && currentTime <= endTime;
 };
 
 module.exports = {
-  getTodayDate
+  getTodayDate,
+  isWithinBusinessHours
 };

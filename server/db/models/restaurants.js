@@ -39,12 +39,20 @@ const restaurantSchema = new mongoose.Schema({
     }
   },
 
+  business_hours_description: {
+    type: String
+  },
+
+  cuisine_type: {
+    type: [String]
+  },
+
   phone: {
     type: String
   },
 
   website: {
-    type: [String]
+    type: String
   },
 
   delivery_options: {
@@ -54,6 +62,7 @@ const restaurantSchema = new mongoose.Schema({
   image_url: {
     type: String
   },
+
 
   location: {
     type: {

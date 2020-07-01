@@ -3,6 +3,8 @@ const router = express.Router();
 
 const restaurantController = require('../controllers/restaurant-locator');
 
-router.get('/locations', restaurantController.getNearbyRestaurants);
+const { isValidRestaurantParams } = require('../middlewares/request-validation');
+
+router.get('/locations', isValidRestaurantParams, restaurantController.getRestaurants);
 
 module.exports = router;
