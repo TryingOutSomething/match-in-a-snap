@@ -40,7 +40,7 @@ const isValidRestaurantParams = (req, res, next) => {
     req.query.dietaryOptions = null;
   }
 
-  if (!isValidMealOption(requestQueries.mealChoice)) {
+  if (!isValidMealOption(requestQueries.mealOption)) {
     return res.status(401).send('Invalid meal choice!');
   }
 
