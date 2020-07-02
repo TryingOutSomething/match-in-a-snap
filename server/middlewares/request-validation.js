@@ -1,13 +1,5 @@
 const { isValidMealOption } = require('../utils/date_util');
 
-const isValidRequestBody = (req, res, next) => {
-  if (!req.body) {
-    return res.status(401).send('Request body cannot be empty!');
-  }
-
-  next();
-};
-
 /**
  * Validate and process request parameters to ensure before the request is sent to the controllers
  * @param req
@@ -50,7 +42,22 @@ const isValidRestaurantParams = (req, res, next) => {
   next();
 };
 
+/**
+ * Validate user's preference before saving it into the database
+ * @param req
+ * @param res
+ * @param next
+ * @returns {boolean | void}
+ */
+const isValidUserPreferenceRequestBody = (req, res, next) => {
+  if (!req.body) {
+    return res.status(401).send('Request body cannot be empty!');
+  }
+
+  next();
+};
+
 module.exports = {
-  isValidRequestBody,
-  isValidRestaurantParams
+  isValidRestaurantParams,
+  isValidUserPreferenceRequestBody
 };

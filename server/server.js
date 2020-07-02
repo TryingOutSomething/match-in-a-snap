@@ -7,7 +7,7 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/', routes);
-app.use((error, req, res, next) => {
+app.use((error, req, res) => {
   if (error.status) {
     res.status(error.status);
   } else {

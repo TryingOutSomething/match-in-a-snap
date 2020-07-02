@@ -5,7 +5,9 @@ const { getTodayDate, isWithinBusinessHours } = require('../utils/date_util');
 const MAX_DISTANCE = 2000;
 const DEFAULT_PAGING_SIZE = 10;
 
-const getNearbyRestaurants = (coordinates, cuisineType, currentPage, userMealChoice) => {
+const getNearbyRestaurants = (queryParameters) => {
+  const { coordinates, cuisineType, currentPage, userMealChoice } = queryParameters;
+
   return new Promise(((resolve, reject) => {
     Restaurant.find(buildGetNearbyRestaurantsQuery(coordinates, cuisineType))
               .skip(currentPage)
