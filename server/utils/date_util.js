@@ -1,4 +1,4 @@
-const LIST_OF_DATES = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+const LIST_OF_DATES = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 const MEAL_TIMINGS = {
   breakfast: '00:00-11:59',
   lunch: '12:00-17:59',
@@ -19,21 +19,23 @@ const getUserMealOptionTimeRange = (userMealChoice) => {
   return MEAL_TIMINGS[userMealChoice];
 };
 
-// const getCurrentTime = () => {
-//   // Get 24hrs of current time in HH:MM
-//   return new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-// };
-
 const isWithinBusinessHours = (restaurantTiming, userMealOption) => {
-  let businessHours = restaurantTiming.split('-');
-  let startTime = parseInt(businessHours[0].replace(':', ''));
-  let endTime = parseInt(businessHours[1].replace(':', ''));
+  let [restaurantStartTime, restaurantEndTime] = getStartEndTimeFromRange(restaurantTiming);
+  let [predefinedStartTime, predefinedEndTime] = getStartEndTimeFromRange(getUserMealOptionTimeRange(userMealOption));
 
-  let userMealOptionTimeRange = getUserMealOptionTimeRange(userMealOption).split('-');
-  let userMealOptionStartTime = parseInt(userMealOptionTimeRange[0].replace(':', ''));
-  let userMealOptionEndTime = parseInt(userMealOptionTimeRange[1].replace(':', ''));
+  if (restaurantStartTime > restaurantEndTime && userMealOption !== 'lunch') {
+    return true;
+  }
 
-  return userMealOptionStartTime <= startTime || endTime <= userMealOptionEndTime;
+  return restaurantStartTime <= predefinedEndTime && predefinedStartTime <= restaurantEndTime;
+};
+
+const getStartEndTimeFromRange = (timeRange) => {
+  let startEndTiming = timeRange.split('-');
+  let startTime = parseInt(startEndTiming[0].replace(':', ''));
+  let endTime = parseInt(startEndTiming[1].replace(':', ''));
+
+  return [startTime, endTime];
 };
 
 module.exports = {
