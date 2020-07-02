@@ -15,13 +15,9 @@ const getNearbyRestaurants = (coordinates, cuisineType, currentPage, userMealCho
                   reject(err);
                 }
 
-                // process the data
-                // 1. get today and current time
-                // 2. filter restaurants that are not within the range
-                // 3. return to user
                 let filteredRestaurants = filterRestaurantsFromUserMealChoice(restaurants, userMealChoice);
-                // resolve(restaurantMapper(filteredRestaurants));
-                resolve(filteredRestaurants);
+
+                resolve(restaurantMapper(filteredRestaurants));
               });
   }));
 };
@@ -58,19 +54,28 @@ const filterRestaurantsFromUserMealChoice = (restaurants, userMealOption) => {
   for (let i = 0; i < restaurants.length; i++) {
     let restaurantOperatingHoursToday = restaurants[i].business_hours[todayDate];
 
-    for (let j = 0; j < restaurantOperatingHoursToday.length; j++) {
-      if (restaurantOperatingHoursToday[j] === 'Closed' ||
-        !isWithinBusinessHours(restaurantOperatingHoursToday[j], userMealOption) ||
-        restaurantsThatAreOpen.includes(restaurants[i])
-      ) {
-        continue;
-      }
-
-      restaurantsThatAreOpen.push(restaurants[i]);
+    if (!restaurantIsOpenFromUserMealOption(restaurantOperatingHoursToday, userMealOption)) {
+      continue;
     }
+
+    restaurantsThatAreOpen.push(restaurants[i]);
   }
 
   return restaurantsThatAreOpen;
+};
+
+const restaurantIsOpenFromUserMealOption = (restaurantOperatingHoursToday, userMealOption) => {
+  for (let j = 0; j < restaurantOperatingHoursToday.length; j++) {
+    if (restaurantOperatingHoursToday[j] === 'Closed' ||
+      !isWithinBusinessHours(restaurantOperatingHoursToday[j], userMealOption)
+    ) {
+      continue;
+    }
+
+    return true;
+  }
+
+  return false;
 };
 
 module.exports = {
