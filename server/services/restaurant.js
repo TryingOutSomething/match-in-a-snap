@@ -1,6 +1,6 @@
 const Restaurant = require('../db/models/restaurants');
 const { restaurantMapper } = require('../mappers/restaurant-mapper');
-const { getTodayDate, isWithinBusinessHours } = require('../utils/date_util');
+const { getTodayDate, isWithinBusinessHours } = require('../utils/date-util');
 
 const MAX_DISTANCE = 2000;
 const DEFAULT_PAGING_SIZE = 10;

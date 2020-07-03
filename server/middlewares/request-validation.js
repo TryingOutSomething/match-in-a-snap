@@ -1,4 +1,4 @@
-const { isValidMealOption } = require('../utils/date_util');
+const { isValidMealOption } = require('../utils/date-util');
 
 /**
  * Validate and process request parameters to ensure before the request is sent to the controllers
