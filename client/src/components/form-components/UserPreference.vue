@@ -52,13 +52,12 @@
           </v-row>
         </v-col>
 
-        <v-col class="pb-0" sm="11" cols="11">
+        <v-col class="pb-0" cols="12" sm="11">
           <v-card-text class="pb-1 font-italic">I'm having</v-card-text>
         </v-col>
-        <v-col sm="10" cols="12">
+        <v-col cols="5" sm="10">
           <v-row justify="center">
             <v-chip-group
-              multiple
               column
               :active-class="chipSelectedColour"
               v-model="userPreference.mealChoice"
@@ -78,7 +77,7 @@
         <v-col class="pb-0" sm="11" cols="11">
           <v-card-text class="pb-1 font-italic">I prefer</v-card-text>
         </v-col>
-        <v-col sm="10" cols="12" class="ml-10">
+        <v-col class="ml-6" cols="6" sm="10">
           <v-row justify="center">
             <v-chip-group
               multiple
@@ -113,32 +112,32 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
-import Snackbar from "@/components/core/Snackbar";
-import * as formConstants from "@/constants/form-constants";
-import * as validationUtil from "@/utils/validation";
+  import { mapMutations, mapState } from 'vuex';
+  import Snackbar from '@/components/core/Snackbar';
+  import * as formConstants from '@/constants/form-constants';
+  import * as validationUtil from '@/utils/validation';
 
-export default {
-  name: "UserPreference",
-  components: {
-    Snackbar
-  },
+  export default {
+    name: 'UserPreference',
+    components: {
+      Snackbar
+    },
 
-  data: () => ({
-    genderList: formConstants.GENDER_OPTIONS,
-    meals: formConstants.MEAL_OPTIONS,
-    dietaryOptions: formConstants.DIETARY_OPTIONS,
-    inputBorderFocusColour: formConstants.INPUT_FOCUS_BORDER_COLOUR,
-    chipSelectedColour: formConstants.SELECTED_CHIP_COLOUR,
+    data: () => ({
+      genderList: formConstants.GENDER_OPTIONS,
+      meals: formConstants.MEAL_OPTIONS,
+      dietaryOptions: formConstants.DIETARY_OPTIONS,
+      inputBorderFocusColour: formConstants.INPUT_FOCUS_BORDER_COLOUR,
+      chipSelectedColour: formConstants.SELECTED_CHIP_COLOUR,
 
-    validation: { required: validationUtil.requiredField }
+      validation: { required: validationUtil.requiredField }
 
-    // userPreference: formConstants.DEFAULT_USER_PREFERENCE_OBJECT
-  }),
+      // userPreference: formConstants.DEFAULT_USER_PREFERENCE_OBJECT
+    }),
 
-  computed: {
-    ...mapState(["snackSettings"]),
-    ...mapState("find-restaurants", ["userPreference"])
+    computed: {
+      ...mapState(['snackSettings']),
+      ...mapState('find-restaurants', ['userPreference'])
   },
 
   methods: {

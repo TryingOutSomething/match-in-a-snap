@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-card-title class="display-1 pt-5 justify-center">
+        <v-card-title class="pt-5 justify-center font-weight-regular form-title">
           MATCH IN A SNAP!
         </v-card-title>
         <v-card-subtitle class="font-italic text-center">
@@ -30,30 +30,42 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import LoadingScreen from "@/components/form-components/LoadingScreen";
-import UserPreference from "@/components/form-components/UserPreference";
-import { EDITING_STATUS, LOADING_STATUS } from "@/constants/form-constants";
+  import { mapState } from 'vuex';
+  import LoadingScreen from '@/components/form-components/LoadingScreen';
+  import UserPreference from '@/components/form-components/UserPreference';
+  import { EDITING_STATUS, LOADING_STATUS } from '@/constants/form-constants';
 
-export default {
-  name: "Form",
-  components: {
-    LoadingScreen,
-    UserPreference
-  },
-
-  computed: {
-    ...mapState(["formStatus"]),
-
-    requireUserInput() {
-      return this.formStatus === EDITING_STATUS;
+  export default {
+    name: 'Form',
+    components: {
+      LoadingScreen,
+      UserPreference
     },
 
-    isFetchingResults() {
-      return this.formStatus === LOADING_STATUS;
+    computed: {
+      ...mapState(['formStatus']),
+
+      requireUserInput() {
+        return this.formStatus === EDITING_STATUS;
+      },
+
+      isFetchingResults() {
+        return this.formStatus === LOADING_STATUS;
+      }
     }
-  }
-};
+  };
 </script>
 
-<style scoped></style>
+<style scoped>
+  @media only screen and (min-width: 400px) {
+    .form-title {
+      font-size: xx-large;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    .form-title {
+      font-size: x-large;
+    }
+  }
+</style>
