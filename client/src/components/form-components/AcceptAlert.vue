@@ -5,47 +5,57 @@
         Enjoy Your Meal!
       </v-card-title>
 
-      <v-card-actions class="justify-center">
-        <v-btn class="ma-4 px-5" color="#FFD966" @click="returnToForm">
-          Next Location
-        </v-btn>
-        <v-btn class="ma-4 px-5" color="#FFDF10">Feedback</v-btn>
+      <v-card-actions>
+        <v-row class="mx-0 mb-3" justify="center">
+          <v-btn @click="returnToForm" class="ma-4 px-5" color="#FFD966">
+            Next Location
+          </v-btn>
+          <v-btn @click="launchFeedbackFormUrl" class="ma-4 px-5" color="#FFDF10">Feedback</v-btn>
+        </v-row>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+  import { mapActions } from 'vuex';
+  import { FEEDBACK_URL } from '@/constants/url-constants';
 
-export default {
-  name: "AcceptAlertBox",
+  export default {
+    name: 'AcceptAlertBox',
+    data: () => ({
+      feedbackFormUrl: FEEDBACK_URL
+    }),
 
-  computed: {
-    dialog: {
-      get() {
-        return this.$attrs.value;
+    computed: {
+      dialog: {
+        get() {
+          return this.$attrs.value;
+        },
+
+        set(value) {
+          this.$emit('input', value);
+        }
+      }
+    },
+
+    methods: {
+      ...mapActions('find-restaurants', ['RESET_SEARCH_RESULTS']),
+
+      returnToForm() {
+        this.dialog = false;
+        this.RESET_SEARCH_RESULTS();
       },
 
-      set(value) {
-        this.$emit("input", value);
+      launchFeedbackFormUrl() {
+        window.open(this.feedbackFormUrl, '_blank');
       }
     }
-  },
-
-  methods: {
-    ...mapActions("find-restaurants", ["RESET_SEARCH_RESULTS"]),
-
-    returnToForm() {
-      this.dialog = false;
-      this.RESET_SEARCH_RESULTS();
-    }
-  }
-};
+  };
 </script>
 
 <style scoped>
-.v-btn {
-  border-radius: 6px;
-}
+  .v-btn {
+    border-radius: 6px;
+  }
 </style>

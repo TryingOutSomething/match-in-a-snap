@@ -65,7 +65,7 @@
               <v-chip
                 class="mx-4 my-2 px-5"
                 v-for="choice in meals"
-                :value="choice"
+                :value="choice.toLowerCase()"
                 :key="choice"
               >
                 {{ choice }}
@@ -104,8 +104,9 @@
           large
           color="#FFDF10"
           @click="searchRestaurants"
-          >Surprise Me!</v-btn
         >
+          Surprise Me!
+        </v-btn>
       </v-card-actions>
     </v-form>
   </v-container>
@@ -138,58 +139,58 @@
     computed: {
       ...mapState(['snackSettings']),
       ...mapState('find-restaurants', ['userPreference'])
-  },
-
-  methods: {
-    ...mapMutations(["TOGGLE_ERROR_NOTIFICATION"]),
-
-    searchRestaurants() {
-      if (this.isInvalidForm()) {
-        return;
-      }
-
-      // add empty id here? then pass to backend
-
-      this.$store
-        .dispatch("find-restaurants/SEARCH_RESTAURANTS", this.userPreference)
-        .catch(err => console.log(err));
     },
 
-    isInvalidForm() {
-      if (validationUtil.isIncompleteForm(this.userPreference)) {
-        this.TOGGLE_ERROR_NOTIFICATION("Fields and options cannot be empty!");
-        return true;
-      }
+    methods: {
+      ...mapMutations(['TOGGLE_ERROR_NOTIFICATION']),
 
-      if (validationUtil.isInvalidPostalCode(this.userPreference.postalCode)) {
-        this.TOGGLE_ERROR_NOTIFICATION("Postal code must be exactly 6 digits!");
-        return true;
-      }
+      searchRestaurants() {
+        if (this.isInvalidForm()) {
+          return;
+        }
 
-      if (validationUtil.isInvalidAge(this.userPreference.age)) {
-        this.TOGGLE_ERROR_NOTIFICATION("Invalid age!");
-        return true;
-      }
+        // add empty id here? then pass to backend
 
-      return false;
+        this.$store
+            .dispatch('find-restaurants/SEARCH_RESTAURANTS', this.userPreference)
+            .catch(err => console.log(err));
+      },
+
+      isInvalidForm() {
+        if (validationUtil.isIncompleteForm(this.userPreference)) {
+          this.TOGGLE_ERROR_NOTIFICATION('Fields and options cannot be empty!');
+          return true;
+        }
+
+        if (validationUtil.isInvalidPostalCode(this.userPreference.postalCode)) {
+          this.TOGGLE_ERROR_NOTIFICATION('Postal code must be exactly 6 digits!');
+          return true;
+        }
+
+        if (validationUtil.isInvalidAge(this.userPreference.age)) {
+          this.TOGGLE_ERROR_NOTIFICATION('Invalid age!');
+          return true;
+        }
+
+        return false;
+      }
     }
-  }
-};
+  };
 </script>
 
 <style scoped>
-.v-chip {
-  border-radius: 5px;
-  width: 120px;
-  display: flex;
-  justify-content: center;
-}
+  .v-chip {
+    border-radius: 5px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+  }
 
-.v-chip-group--column .v-slide-group__content {
-  justify-content: center;
-}
+  .v-chip-group--column .v-slide-group__content {
+    justify-content: center;
+  }
 
-.v-btn {
-  border-radius: 6px;
-}
+  .v-btn {
+    border-radius: 6px;
+  }
 </style>

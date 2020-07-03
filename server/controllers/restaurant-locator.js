@@ -1,14 +1,14 @@
 const { getNearbyRestaurants } = require('../services/restaurant');
 
 const getRestaurants = async (req, res, next) => {
-  const { dietaryOptions, currentPage, location, mealOption } = req.query;
+  const { dietaryOptions, currentPage, location, mealChoice } = req.query;
 
   try {
     let restaurants = await getNearbyRestaurants({
       coordinates: location,
       cuisineType: dietaryOptions,
       currentPAge: currentPage,
-      userMealChoice: mealOption
+      userMealChoice: mealChoice
     });
 
     res.status(200).send(restaurants);

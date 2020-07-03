@@ -2,7 +2,10 @@
 
 export default {
   POPULATE_SEARCH_RESULTS(state, restaurants) {
-    console.log(restaurants);
+    let viewingRestaurant = restaurants.shift();
+
+    state.restaurantList = restaurants;
+    state.viewingRestaurant = Object.assign({}, viewingRestaurant);
     // populate list and set the first one as viewing
   },
 
@@ -11,6 +14,9 @@ export default {
     // check if the list is empty
     // if not empty then assign to viewingRestaurant
     // toggle the reject alert box
+    let nextRestaurant = state.restaurantList.shift();
+
+    state.viewingRestaurant = Object.assign({}, nextRestaurant);
   },
 
   CLEAR_FETCHED_RESULTS(state) {

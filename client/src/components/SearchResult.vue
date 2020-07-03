@@ -22,7 +22,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <h2 class="font-weight-regular">Gubergren.</h2>
+          <h2 class="font-weight-regular">{{ viewingRestaurant.name }}</h2>
         </v-col>
       </v-row>
 
@@ -32,7 +32,7 @@
         </v-col>
         <v-col>
           <p class="mb-0">
-            Dolore voluptua clita dolor labore et nonumy magna ut dolore,.
+            {{ viewingRestaurant.businessHours }}
           </p>
         </v-col>
       </v-row>
@@ -43,7 +43,7 @@
         </v-col>
         <v-col>
           <p class="mb-0">
-            Dolore voluptua clita dolor labore et nonumy magna ut dolore,.
+            {{ viewingRestaurant.phone }}
           </p>
         </v-col>
       </v-row>
@@ -54,7 +54,7 @@
         </v-col>
         <v-col>
           <p class="mb-0">
-            Dolore voluptua clita dolor labore et nonumy magna ut dolore,.
+            {{ viewingRestaurant.address }}
           </p>
         </v-col>
       </v-row>
@@ -64,8 +64,8 @@
           <v-icon color="grey darken-4">mdi-web</v-icon>
         </v-col>
         <v-col>
-          <a href="#" target="_blank" class="mb-0">
-            Dolore voluptua clita dolor labore et nonumy magna ut dolore,.
+          <a :href="viewingRestaurant.website" class="mb-0" target="_blank" v-if="viewingRestaurant.website">
+            {{ viewingRestaurant.website }}
           </a>
         </v-col>
       </v-row>
@@ -76,7 +76,7 @@
         </v-col>
         <v-col>
           <p class="mb-0">
-            Dolore voluptua clita dolor labore et nonumy magna ut dolore,.
+            {{ viewingRestaurant.deliveryOptions }}
           </p>
         </v-col>
       </v-row>
@@ -92,7 +92,7 @@
             <v-btn
               class="mr-4"
               color="#FFD966"
-              @click="toggleRejectAlertModal = true"
+              @click="getNextRestaurant"
             >
               Next Choice
             </v-btn>
@@ -151,7 +151,19 @@
 
     methods: {
       ...mapActions('find-restaurants', ['RESET_SEARCH_RESULTS']),
-      ...mapMutations('find-restaurants', ['DISPLAY_NEXT_RESTAURANT'])
+      ...mapMutations('find-restaurants', ['DISPLAY_NEXT_RESTAURANT']),
+
+      getNextRestaurant() {
+        let restaurantListLength = this.$store.getters['find-restaurants/restaurantListLength'];
+
+        if (restaurantListLength <= 0) {
+          this.toggleRejectAlertModal = true;
+
+          return;
+        }
+
+        this.DISPLAY_NEXT_RESTAURANT();
+      }
     }
   };
 </script>

@@ -12,7 +12,7 @@ const isValidRestaurantParams = (req, res, next) => {
 
   if (!requestQueries ||
     !('currentPage' in requestQueries) ||
-    !('mealOption' in requestQueries) ||
+    !('mealChoice' in requestQueries) ||
     !('postalCode' in requestQueries)
   ) {
     return res.status(401).send('Certain request params are invalid!');
@@ -32,7 +32,7 @@ const isValidRestaurantParams = (req, res, next) => {
     req.query.dietaryOptions = null;
   }
 
-  if (!isValidMealOption(requestQueries.mealOption)) {
+  if (!isValidMealOption(requestQueries.mealChoice)) {
     return res.status(401).send('Invalid meal choice!');
   }
 

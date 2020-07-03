@@ -10,27 +10,25 @@
 </template>
 
 <script>
-export default {
-  name: "Footer",
+  import * as urls from '@/constants/url-constants';
 
-  data: () => ({
-    links: [
-      { name: "Terms of use", url: `${window.location.href}terms` },
-      { name: "Instagram", url: "https://www.instagram.com/snapee.co/" },
-      { name: "Facebook", url: "https://www.facebook.com/snapee.co/" },
-      { name: "Website", url: "https://www.snapee.co/" },
-      {
-        name: "Feedback",
-        url:
-          "https://docs.google.com/forms/d/e/1FAIpQLScDppvV9QseBWeexi4q6OXVT8UPL5ABfmoWdtIbCVbQ2bjXJA/viewform"
-      }
-    ]
-  })
-};
+  export default {
+    name: 'Footer',
+
+    data: () => ({
+      links: [
+        { name: 'Terms of use', url: `${window.location.href}terms` },
+        { name: 'Instagram', url: urls.INSTAGRAM_URL },
+        { name: 'Facebook', url: urls.FACEBOOK_URL },
+        { name: 'Website', url: urls.WEBSITE_URL },
+        { name: 'Feedback', url: urls.FEEDBACK_URL }
+      ]
+    })
+  };
 </script>
 
 <style scoped>
-.v-application a {
-  color: #616161;
-}
+  .v-application a {
+    color: #616161;
+  }
 </style>

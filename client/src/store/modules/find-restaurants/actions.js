@@ -1,4 +1,4 @@
-import { FETCH_RESTAURANTS as fetchRestaurants } from "@/services/mock-api";
+import api from '@/services/api';
 
 export default {
   SEARCH_RESTAURANTS({ commit }, userPreference) {
@@ -7,16 +7,16 @@ export default {
 
       commit("SET_LOADING_FORM_STATUS", null, { root: true });
 
-      fetchRestaurants()
-        .then(response => {
-          commit("POPULATE_SEARCH_RESULTS", response);
-          // change to result status
+      api.getNearbyRestaurants(userPreference)
+         .then(response => {
+           commit('POPULATE_SEARCH_RESULTS', response.data);
+           // change to result status
 
-          commit("SET_RESULT_FORM_STATUS", null, { root: true });
+           commit('SET_RESULT_FORM_STATUS', null, { root: true });
 
-          resolve();
-        })
-        .catch(err => reject(err));
+           resolve();
+         })
+         .catch(err => reject(err.response.data));
     });
   },
 
