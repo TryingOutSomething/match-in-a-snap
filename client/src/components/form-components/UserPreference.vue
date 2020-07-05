@@ -83,7 +83,7 @@
               multiple
               column
               :active-class="chipSelectedColour"
-              v-model="userPreference.dietaryChoice"
+              v-model="userPreference.dietaryOptions"
             >
               <v-chip
                 class="mx-4 my-2 px-5"
@@ -138,7 +138,7 @@
 
     computed: {
       ...mapState(['snackSettings']),
-      ...mapState('find-restaurants', ['userPreference'])
+      ...mapState('find-restaurants', ['restaurantListPage', 'userPreference'])
     },
 
     methods: {
@@ -150,6 +150,9 @@
         }
 
         // add empty id here? then pass to backend
+        this.userPreference.currentPage = formConstants.DEFAULT_PAGE_NO;
+
+        localStorage.setItem('userPreference', JSON.stringify(this.userPreference));
 
         this.$store
             .dispatch('find-restaurants/SEARCH_RESTAURANTS', this.userPreference)

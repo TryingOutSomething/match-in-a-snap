@@ -10,10 +10,6 @@ export default {
   },
 
   DISPLAY_NEXT_RESTAURANT(state) {
-    // get head of list, unshift the list
-    // check if the list is empty
-    // if not empty then assign to viewingRestaurant
-    // toggle the reject alert box
     let nextRestaurant = state.restaurantList.shift();
 
     state.viewingRestaurant = Object.assign({}, nextRestaurant);

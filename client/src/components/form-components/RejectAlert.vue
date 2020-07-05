@@ -10,8 +10,8 @@
           <v-btn @click="fetchMoreRestaurants" class="ma-4 px-5" color="#FFD966">
             See next 10 choices
           </v-btn>
-          <v-btn @click="returnToForm" class="ma-4 px-5" color="#FFDF10"
-          >Change preferences
+          <v-btn @click="returnToForm" class="ma-4 px-5" color="#FFDF10">
+            Change preferences
           </v-btn>
         </v-row>
       </v-card-actions>
@@ -40,10 +40,7 @@
     },
 
     methods: {
-      ...mapActions('find-restaurants', [
-        'RESET_SEARCH_RESULTS',
-        'SEARCH_RESTAURANTS'
-      ]),
+      ...mapActions('find-restaurants', ['RESET_SEARCH_RESULTS']),
 
       returnToForm() {
         this.dialog = false;
@@ -51,7 +48,13 @@
       },
 
       fetchMoreRestaurants() {
+        this.userPreference.currentPage++;
         this.dialog = false;
+
+        this.$store
+            .dispatch('find-restaurants/SEARCH_RESTAURANTS', this.userPreference)
+            .catch(err => console.log(err));
+
         // Get id of viewing restaurant and add it to userPreference
         // this.SEARCH_RESTAURANTS(this.userPreference);
       }

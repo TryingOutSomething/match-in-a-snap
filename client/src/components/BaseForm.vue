@@ -22,10 +22,10 @@
       </v-col>
     </v-row>
 
-    <v-divider />
+    <v-divider/>
 
-    <user-preference v-show="requireUserInput" />
-    <loading-screen v-if="isFetchingResults" />
+    <user-preference v-show="requireUserInput"/>
+    <loading-screen v-if="isFetchingResults"/>
   </v-container>
 </template>
 

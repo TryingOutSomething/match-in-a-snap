@@ -1,0 +1,54 @@
+<template>
+  <v-dialog persistent v-model="errorDuringHttpRequest" width="650px">
+    <v-card>
+      <v-card-title class="display-1 pt-10 justify-center font-weight-regular form-title">
+        Oops! No available restaurants in this area.
+      </v-card-title>
+
+      <v-card-actions>
+        <v-row class="mx-0 mb-3" justify="center">
+          <v-btn @click="returnToForm" class="ma-4 px-5" color="#FFDF10">
+            Change preferences
+          </v-btn>
+        </v-row>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</template>
+
+<script>
+  import { mapActions, mapMutations, mapState } from 'vuex';
+
+  export default {
+    name: 'NoRestaurantsAlertBox',
+
+    computed: {
+      ...mapState(['errorDuringHttpRequest']),
+    },
+
+    methods: {
+      ...mapActions('find-restaurants', ['RESET_SEARCH_RESULTS']),
+      ...mapMutations(['TOGGLE_ERROR_ALERT_BOX']),
+
+      returnToForm() {
+        this.RESET_SEARCH_RESULTS();
+        this.TOGGLE_ERROR_ALERT_BOX();
+      },
+    }
+
+  };
+</script>
+
+<style scoped>
+  @media only screen and (min-width: 400px) {
+    .form-title {
+      font-size: xx-large;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    .form-title {
+      font-size: x-small;
+    }
+  }
+</style>

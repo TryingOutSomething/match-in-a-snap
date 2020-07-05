@@ -8,20 +8,23 @@ const DEFAULT_PAGING_SIZE = 10;
 const getNearbyRestaurants = (queryParameters) => {
   const { coordinates, cuisineType, currentPage, userMealChoice } = queryParameters;
 
-  return new Promise(((resolve, reject) => {
-    Restaurant.find(buildGetNearbyRestaurantsQuery(coordinates, cuisineType))
-              .skip(currentPage)
-              .limit(DEFAULT_PAGING_SIZE)
-              .exec((err, restaurants) => {
-                if (err) {
-                  reject(err);
-                }
+  let documentsToSkip = (currentPage - 1) * DEFAULT_PAGING_SIZE;
 
-                let filteredRestaurants = filterRestaurantsFromUserMealChoice(restaurants, userMealChoice);
+  return new Promise((resolve, reject) => {
+      Restaurant.find(buildGetNearbyRestaurantsQuery(coordinates, cuisineType))
+                .skip(documentsToSkip)
+                .limit(DEFAULT_PAGING_SIZE)
+                .exec((err, restaurants) => {
+                  if (err) {
+                    reject(err);
+                  }
 
-                resolve(restaurantMapper(filteredRestaurants));
-              });
-  }));
+                  let filteredRestaurants = filterRestaurantsFromUserMealChoice(restaurants, userMealChoice);
+
+                  resolve(restaurantMapper(filteredRestaurants));
+                });
+    }
+  );
 };
 
 const buildGetNearbyRestaurantsQuery = (coordinates, cuisineType) => {

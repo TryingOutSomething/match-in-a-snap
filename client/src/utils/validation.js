@@ -20,6 +20,7 @@ export const isIncompleteForm = userPreference => {
   return !!(isEmptyField(postalCode) ||
     isEmptyField(age) ||
     isEmptyField(gender) ||
-    isEmptyList(mealChoice) ||
-    isEmptyList(dietaryChoice));
+    // isEmptyList(dietaryChoice) ||
+    isEmptyList(mealChoice)
+  );
 };

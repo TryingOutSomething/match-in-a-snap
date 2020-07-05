@@ -24,6 +24,8 @@ export const DEFAULT_USER_PREFERENCE_OBJECT = {
   age: '',
   gender: '',
   mealChoice: [],
-  dietaryChoice: [],
-  currentPage: 0
+  dietaryOptions: [],
+  currentPage: DEFAULT_PAGE_NO
 };
+
+export const DEFAULT_PAGE_NO = 1;

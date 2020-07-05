@@ -1,5 +1,5 @@
 // Global mutations that are shared across all components
-import * as formStatus from "@/constants/form-constants";
+import * as formStatus from '@/constants/form-constants';
 
 export default {
   SET_EDITING_FORM_STATUS(state) {
@@ -9,12 +9,17 @@ export default {
   SET_LOADING_FORM_STATUS(state) {
     state.formStatus = formStatus.LOADING_STATUS;
   },
+
   SET_RESULT_FORM_STATUS(state) {
     state.formStatus = formStatus.RESULT_STATUS;
   },
 
+  TOGGLE_ERROR_ALERT_BOX(state) {
+    state.errorDuringHttpRequest = !state.errorDuringHttpRequest;
+  },
+
   TOGGLE_ERROR_NOTIFICATION(state, message) {
-    state.snackSettings.colour = "error";
+    state.snackSettings.colour = 'error';
     state.snackSettings.text = message;
     state.snackSettings.isVisible = true;
   },

@@ -7,7 +7,7 @@ const getRestaurants = async (req, res, next) => {
     let restaurants = await getNearbyRestaurants({
       coordinates: location,
       cuisineType: dietaryOptions,
-      currentPAge: currentPage,
+      currentPage: currentPage,
       userMealChoice: mealChoice
     });
 
