@@ -17,7 +17,12 @@ export default {
 
   CLEAR_FETCHED_RESULTS(state) {
     let restaurantListLength = state.restaurantList.length;
-    state.restaurantList = state.restaurantList.splice(0, restaurantListLength);
+
+    if (restaurantListLength <= 0) {
+      return;
+    }
+
+    state.restaurantList.splice(0, restaurantListLength);
 
     for (let key in state.viewingRestaurant) {
       delete state.viewingRestaurant[key];

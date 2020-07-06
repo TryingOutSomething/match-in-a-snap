@@ -23,7 +23,7 @@ export default {
   },
 
   RESET_SEARCH_RESULTS({ commit }) {
-    // commit("CLEAR_FETCHED_RESULTS");
+    commit('CLEAR_FETCHED_RESULTS');
     commit('SET_EDITING_FORM_STATUS', null, { root: true });
   }
 };
