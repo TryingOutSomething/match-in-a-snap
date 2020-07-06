@@ -93,7 +93,7 @@
         <v-btn
           class="mt-4 mb-6 pa-7"
           large
-          color="#FFDF10"
+          :color="primaryButtonColour"
           @click="searchRestaurants"
         >
           Surprise Me!
@@ -125,7 +125,9 @@
       inputBorderFocusColour: formConstants.INPUT_FOCUS_BORDER_COLOUR,
       chipSelectedColour: formConstants.SELECTED_CHIP_COLOUR,
 
-      validation: { required: validationUtil.requiredField }
+      validation: { required: validationUtil.requiredField },
+
+      primaryButtonColour: formConstants.BUTTON_COLOUR_PRIMARY
     }),
 
     computed: {

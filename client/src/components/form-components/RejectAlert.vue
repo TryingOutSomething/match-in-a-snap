@@ -7,10 +7,10 @@
 
       <v-card-actions>
         <v-row class="mx-0 mb-3" justify="center">
-          <v-btn @click="fetchMoreRestaurants" class="ma-4 px-5" color="#FFD966">
+          <v-btn :color="secondaryColour" @click="fetchMoreRestaurants" class="ma-4 px-5">
             View more choices
           </v-btn>
-          <v-btn @click="returnToForm" class="ma-4 px-5" color="#FFDF10">
+          <v-btn :color="primaryColour" @click="returnToForm" class="ma-4 px-5">
             Change preferences
           </v-btn>
         </v-row>
@@ -21,9 +21,15 @@
 
 <script>
   import { mapActions, mapMutations, mapState } from 'vuex';
+  import { BUTTON_COLOUR_PRIMARY, BUTTON_COLOUR_SECONDARY } from '@/constants/form-constants';
+
 
   export default {
     name: 'RejectAlertBox',
+    data: () => ({
+      primaryColour: BUTTON_COLOUR_PRIMARY,
+      secondaryColour: BUTTON_COLOUR_SECONDARY
+    }),
 
     computed: {
       ...mapState('find-restaurants', ['userPreference', 'viewingRestaurant']),

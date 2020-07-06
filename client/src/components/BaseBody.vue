@@ -3,7 +3,7 @@
     <v-card class="mx-auto mt-12" width="600px" elevation="3">
       <base-form v-show="!showingResults"/>
       <search-result v-show="showingResults"/>
-      <no-restaurants-alert/>
+      <error-alert-box/>
     </v-card>
     <footer-base/>
   </v-container>
@@ -12,14 +12,14 @@
 <script>
   import { mapState } from 'vuex';
   import FooterBase from '@/components/core/Footer';
-  import NoRestaurantsAlert from '@/components/form-components/NoRestaurantsAlert';
   import { RESULT_STATUS } from '@/constants/form-constants';
+  import ErrorAlertBox from './core/ErrorAlertBox';
 
   export default {
     name: 'BaseBody',
     components: {
-      FooterBase,
-      NoRestaurantsAlert,
+      ErrorAlertBox,
+      FooterBase
     },
 
     computed: {
@@ -31,5 +31,3 @@
     }
   };
 </script>
-
-<style scoped></style>

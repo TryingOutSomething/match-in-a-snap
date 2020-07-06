@@ -92,14 +92,14 @@
           <v-row align="center" justify="end">
             <v-btn
               class="mr-4"
-              color="#FFD966"
+              :color="secondaryColour"
               @click="getNextRestaurant"
             >
               Next Choice
             </v-btn>
             <v-btn
               class="ml-4 mr-8 px-10"
-              color="#FFDF10"
+              :color="primaryColour"
               @click="toggleAcceptAlertModal = true"
             >
               I Like!
@@ -128,6 +128,8 @@
   import AcceptAlert from '@/components/form-components/AcceptAlert';
   import RejectAlert from '@/components/form-components/RejectAlert';
   import { mapActions, mapMutations, mapState } from 'vuex';
+  import { BUTTON_COLOUR_PRIMARY, BUTTON_COLOUR_SECONDARY } from '@/constants/form-constants';
+
 
   export default {
     name: 'SearchResult',
@@ -143,7 +145,10 @@
       snapeeLogo: require('@/assets/snapee-logo-no-text.png'),
 
       toggleAcceptAlertModal: false,
-      toggleRejectAlertModal: false
+      toggleRejectAlertModal: false,
+
+      primaryColour: BUTTON_COLOUR_PRIMARY,
+      secondaryColour: BUTTON_COLOUR_SECONDARY
     }),
 
     computed: {
@@ -168,25 +173,7 @@
         }
 
         this.DISPLAY_NEXT_RESTAURANT();
-      },
-
-      // saveUserAcceptedChoice() {
-      //   this.toggleAcceptAlertModal = true;
-      //
-      //   let confirmUserPreference = this.buildConfirmedUserPreference();
-      //
-      //   api.saveUserChoice(confirmUserPreference).catch(err => console.log(err.response));
-      //   // save preference, clear restaurant list
-      // },
-      //
-      // buildConfirmedUserPreference() {
-      //   let { userId, postalCode, age, gender, mealChoice, dietaryOptions } = JSON.parse(getUserPreference());
-      //   let { name: restaurantName, address } = this.viewingRestaurant;
-      //
-      //   return {
-      //     userId, postalCode, age, gender, mealChoice, dietaryOptions, restaurantName, address
-      //   };
-      // }
+      }
     }
   };
 </script>
