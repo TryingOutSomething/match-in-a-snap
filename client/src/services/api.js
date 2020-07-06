@@ -18,5 +18,6 @@ export default {
   },
 
   saveUserChoice(userChoice) {
+    return apiClient.post('/test', userChoice);
   }
 };

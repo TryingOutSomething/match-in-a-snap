@@ -12,7 +12,7 @@ const isEmptyList = list => typeof list === 'undefined' || list.length <= 0;
 
 export const isInvalidAge = value => value <= 0 || value >= 150;
 
-export const isInvalidPostalCode = value => value.length < 6;
+export const isInvalidPostalCode = value => value.length !== 6;
 
 export const isIncompleteForm = userPreference => {
   const { postalCode, age, gender, mealChoice, dietaryChoice } = userPreference;

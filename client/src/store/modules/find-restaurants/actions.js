@@ -10,21 +10,15 @@ export default {
            let restaurantList = response.data;
 
            if (restaurantList.length <= 0) {
-             commit('TOGGLE_ERROR_ALERT_BOX', null, { root: true });
              return reject('No restaurants from response');
            }
 
            commit('POPULATE_SEARCH_RESULTS', response.data);
-           // change to result status
-
            commit('SET_RESULT_FORM_STATUS', null, { root: true });
 
            resolve();
          })
-         .catch(err => {
-           commit('TOGGLE_ERROR_ALERT_BOX', null, { root: true });
-           reject(err.response.data);
-         });
+         .catch(err => reject(err.response.data));
     });
   },
 

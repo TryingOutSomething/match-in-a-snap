@@ -12,31 +12,22 @@
           <v-card-text class="pb-1 font-italic">Enter your</v-card-text>
         </v-col>
         <v-col class="pb-0" sm="11" cols="11">
-          <v-text-field
-            class="mb-0"
+          <base-text-field
+            :colour="inputBorderFocusColour"
             label="Postal Code"
-            dense
-            outlined
-            clearable
-            type="number"
-            :color="inputBorderFocusColour"
-            :rules="[validation.required]"
+            :validations="[validation.required]"
             v-model="userPreference.postalCode"
-          ></v-text-field>
+          />
         </v-col>
         <v-col class="pt-0 mt-n4" sm="11" cols="11">
           <v-row class="mb-n10">
             <v-col class="pt-2">
-              <v-text-field
+              <base-text-field
+                :colour="inputBorderFocusColour"
                 label="Age"
-                dense
-                outlined
-                clearable
-                type="number"
-                :color="inputBorderFocusColour"
-                :rules="[validation.required]"
+                :validations="[validation.required]"
                 v-model="userPreference.age"
-              ></v-text-field>
+              />
             </v-col>
             <v-col class="pt-2">
               <v-select
@@ -117,10 +108,13 @@
   import Snackbar from '@/components/core/Snackbar';
   import * as formConstants from '@/constants/form-constants';
   import * as validationUtil from '@/utils/validation';
+  import { persistUserPreference } from '@/utils/local-storage';
+  import BaseTextField from '../core/BaseTextField';
 
   export default {
     name: 'UserPreference',
     components: {
+      BaseTextField,
       Snackbar
     },
 
@@ -132,8 +126,6 @@
       chipSelectedColour: formConstants.SELECTED_CHIP_COLOUR,
 
       validation: { required: validationUtil.requiredField }
-
-      // userPreference: formConstants.DEFAULT_USER_PREFERENCE_OBJECT
     }),
 
     computed: {
@@ -142,21 +134,22 @@
     },
 
     methods: {
-      ...mapMutations(['TOGGLE_ERROR_NOTIFICATION']),
+      ...mapMutations(['TOGGLE_ERROR_ALERT_BOX', 'TOGGLE_ERROR_NOTIFICATION']),
 
       searchRestaurants() {
         if (this.isInvalidForm()) {
           return;
         }
 
-        // add empty id here? then pass to backend
         this.userPreference.currentPage = formConstants.DEFAULT_PAGE_NO;
-
-        localStorage.setItem('userPreference', JSON.stringify(this.userPreference));
+        persistUserPreference(this.userPreference);
 
         this.$store
             .dispatch('find-restaurants/SEARCH_RESTAURANTS', this.userPreference)
-            .catch(err => console.log(err));
+            .catch(err => {
+              console.log(err);
+              this.TOGGLE_ERROR_ALERT_BOX();
+            });
       },
 
       isInvalidForm() {

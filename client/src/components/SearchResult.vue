@@ -99,7 +99,7 @@
             <v-btn
               class="ml-4 mr-8 px-10"
               color="#FFDF10"
-              @click="toggleAcceptAlertModal = true"
+              @click="saveUserAcceptedChoice"
             >
               I Like!
             </v-btn>
@@ -127,6 +127,7 @@
   import AcceptAlert from '@/components/form-components/AcceptAlert';
   import RejectAlert from '@/components/form-components/RejectAlert';
   import { mapActions, mapMutations, mapState } from 'vuex';
+  import { getUserPreference } from '@/utils/local-storage';
 
   export default {
     name: 'SearchResult',
@@ -163,6 +164,15 @@
         }
 
         this.DISPLAY_NEXT_RESTAURANT();
+      },
+
+      saveUserAcceptedChoice() {
+        this.toggleAcceptAlertModal = true;
+
+        let userPreference = JSON.parse(getUserPreference());
+
+        // api.saveUserChoice(userPreference).catch(err => console.log(err.response));
+        // save preference, clear restaurant list
       }
     }
   };
