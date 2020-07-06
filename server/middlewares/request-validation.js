@@ -50,7 +50,18 @@ const isValidRestaurantParams = (req, res, next) => {
  * @returns {boolean | void}
  */
 const isValidUserPreferenceRequestBody = (req, res, next) => {
-  if (!req.body) {
+  let { body: requestBody } = req;
+
+  if (!requestBody ||
+    !('userId' in requestBody) ||
+    !('postalCode' in requestBody) ||
+    !('age' in requestBody) ||
+    !('gender' in requestBody) ||
+    !('mealChoice' in requestBody) ||
+    !('dietaryOptions' in requestBody) ||
+    !('restaurantName' in requestBody) ||
+    !('address' in requestBody)
+  ) {
     return res.status(401).send('Request body cannot be empty!');
   }
 

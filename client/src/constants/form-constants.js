@@ -19,7 +19,10 @@ export const DIETARY_OPTIONS = [
   MEAL_OPTIONS = ['Breakfast', 'Lunch', 'Dinner'],
   GENDER_OPTIONS = ['Male', 'Female', 'Rather Not Say'];
 
+import { v4 as uuidV4 } from 'uuid';
+
 export const DEFAULT_USER_PREFERENCE_OBJECT = {
+  userId: uuidV4(),
   postalCode: '',
   age: '',
   gender: '',

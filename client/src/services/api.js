@@ -17,7 +17,11 @@ export default {
     });
   },
 
-  saveUserChoice(userChoice) {
-    return apiClient.post('/test', userChoice);
+  saveUserChoice(userSelectedChoice) {
+    const { userId, postalCode, age, gender, mealChoice, dietaryOptions, restaurantName, address } = userSelectedChoice;
+
+    return apiClient.post('/savePreference', {
+      userId, postalCode, age, gender, mealChoice, dietaryOptions, restaurantName, address
+    });
   }
 };

@@ -1,39 +1,41 @@
 const mongoose = require('mongoose');
 
 const userPreferenceSchema = new mongoose.Schema({
-  uuid: {
-    type: String
-  },
+    userId: {
+      type: String
+    },
 
-  postalCode: {
-    type: String
-  },
+    postal_code: {
+      type: String
+    },
 
-  age: {
-    type: Number
-  },
+    age: {
+      type: Number
+    },
 
-  gender: {
-    type: String
-  },
+    gender: {
+      type: String
+    },
 
-  meal_preference: {
-    type: String
-  },
+    meal_preference: {
+      type: String
+    },
 
-  diet_preference: {
-    type: String
-  },
+    diet_preference: {
+      type: Array
+    },
 
-  restaurant_name: {
-    type: String
-  },
+    restaurant_name: {
+      type: String
+    },
 
-  restaurant_address: {
-    type: String
+    restaurant_address: {
+      type: String
+    }
+  },
+  {
+    timestamps: true,
   }
-});
+);
 
-const userPreference = mongoose.model('UserPreference', userPreferenceSchema);
-
-module.exports = userPreference;
+module.exports = mongoose.model('UserPreference', userPreferenceSchema);

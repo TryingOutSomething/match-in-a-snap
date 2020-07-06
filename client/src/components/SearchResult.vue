@@ -64,9 +64,11 @@
           <v-icon color="grey darken-4">mdi-web</v-icon>
         </v-col>
         <v-col>
-          <a :href="viewingRestaurant.website" class="mb-0" target="_blank" v-if="viewingRestaurant.website">
+          <a :href="viewingRestaurant.website" class="mb-0" target="_blank" v-if="isValidWebsite">
             {{ viewingRestaurant.website }}
           </a>
+
+          <p class="mb-0" v-else>{{ viewingRestaurant.website }}</p>
         </v-col>
       </v-row>
 
@@ -87,7 +89,6 @@
             <v-img :src="snapeeLogo" max-height="100px" max-width="100px"></v-img>
           </v-col>
 
-          <!--          <v-row class="mx-2" justify="end" align="center">-->
           <v-row align="center" justify="end">
             <v-btn
               class="mr-4"
@@ -99,7 +100,7 @@
             <v-btn
               class="ml-4 mr-8 px-10"
               color="#FFDF10"
-              @click="saveUserAcceptedChoice"
+              @click="toggleAcceptAlertModal = true"
             >
               I Like!
             </v-btn>
@@ -127,7 +128,6 @@
   import AcceptAlert from '@/components/form-components/AcceptAlert';
   import RejectAlert from '@/components/form-components/RejectAlert';
   import { mapActions, mapMutations, mapState } from 'vuex';
-  import { getUserPreference } from '@/utils/local-storage';
 
   export default {
     name: 'SearchResult',
@@ -147,7 +147,11 @@
     }),
 
     computed: {
-      ...mapState('find-restaurants', ['viewingRestaurant'])
+      ...mapState('find-restaurants', ['viewingRestaurant']),
+
+      isValidWebsite() {
+        return this.viewingRestaurant.website !== 'No website information';
+      }
     },
 
     methods: {
@@ -166,14 +170,23 @@
         this.DISPLAY_NEXT_RESTAURANT();
       },
 
-      saveUserAcceptedChoice() {
-        this.toggleAcceptAlertModal = true;
-
-        let userPreference = JSON.parse(getUserPreference());
-
-        // api.saveUserChoice(userPreference).catch(err => console.log(err.response));
-        // save preference, clear restaurant list
-      }
+      // saveUserAcceptedChoice() {
+      //   this.toggleAcceptAlertModal = true;
+      //
+      //   let confirmUserPreference = this.buildConfirmedUserPreference();
+      //
+      //   api.saveUserChoice(confirmUserPreference).catch(err => console.log(err.response));
+      //   // save preference, clear restaurant list
+      // },
+      //
+      // buildConfirmedUserPreference() {
+      //   let { userId, postalCode, age, gender, mealChoice, dietaryOptions } = JSON.parse(getUserPreference());
+      //   let { name: restaurantName, address } = this.viewingRestaurant;
+      //
+      //   return {
+      //     userId, postalCode, age, gender, mealChoice, dietaryOptions, restaurantName, address
+      //   };
+      // }
     }
   };
 </script>

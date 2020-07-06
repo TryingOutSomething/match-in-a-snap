@@ -1,9 +1,11 @@
 <template>
   <v-dialog persistent v-model="errorDuringHttpRequest" width="650px">
     <v-card>
-      <v-card-title class="display-1 pt-10 justify-center font-weight-regular form-title">
-        Oops! No available restaurants in this area.
+      <v-card-title class="display-1 pt-10 justify-center font-weight-regular alert-title">
+        Oops!
       </v-card-title>
+
+      <p class="pa-1 ma-0 text-center">No available restaurants in this area.</p>
 
       <v-card-actions>
         <v-row class="mx-0 mb-3" justify="center">
@@ -39,16 +41,4 @@
   };
 </script>
 
-<style scoped>
-  @media only screen and (min-width: 400px) {
-    .form-title {
-      font-size: xx-large;
-    }
-  }
-
-  @media only screen and (max-width: 400px) {
-    .form-title {
-      font-size: x-small;
-    }
-  }
-</style>
+<style scoped></style>

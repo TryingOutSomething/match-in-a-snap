@@ -1,7 +1,19 @@
-const UserPreference = require('../db/models/userPreference');
+const { saveUserPreference } = require('../services/user');
 
-const saveUserSelectedChoice = (req, res, next) => {
-  // save user's selected choice from client into db
+const saveUserSelectedChoice = async (req, res, next) => {
+  let userPreference = req.body;
+
+  try {
+    let documentIsSavedSuccessfully = await saveUserPreference(userPreference);
+
+    if (documentIsSavedSuccessfully) {
+      res.status(201).send('User preference saved');
+    } else {
+      res.status(500).send('Error while saving user\'s preference');
+    }
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = {

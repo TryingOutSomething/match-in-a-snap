@@ -18,8 +18,10 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import api from '@/services/api';
+  import { mapActions, mapState } from 'vuex';
   import { FEEDBACK_URL } from '@/constants/url-constants';
+  import { getUserPreference } from '@/utils/local-storage';
 
   export default {
     name: 'AcceptAlertBox',
@@ -28,6 +30,8 @@
     }),
 
     computed: {
+      ...mapState('find-restaurants', ['viewingRestaurant']),
+
       dialog: {
         get() {
           return this.$attrs.value;
@@ -44,7 +48,23 @@
 
       returnToForm() {
         this.dialog = false;
+        this.saveUserAcceptedChoice();
         this.RESET_SEARCH_RESULTS();
+      },
+
+      saveUserAcceptedChoice() {
+        let confirmUserPreference = this.buildConfirmedUserPreference();
+
+        api.saveUserChoice(confirmUserPreference).catch(err => console.log(err.response));
+      },
+
+      buildConfirmedUserPreference() {
+        let { userId, postalCode, age, gender, mealChoice, dietaryOptions } = JSON.parse(getUserPreference());
+        let { name: restaurantName, address } = this.viewingRestaurant;
+
+        return {
+          userId, postalCode, age, gender, mealChoice, dietaryOptions, restaurantName, address
+        };
       },
 
       launchFeedbackFormUrl() {
