@@ -5,7 +5,7 @@
         Oops!
       </v-card-title>
 
-      <p class="pa-1 ma-0 text-center">No available restaurants in this area.</p>
+      <p class="pa-1 ma-0 text-center">No more available restaurants in this area.</p>
 
       <v-card-actions>
         <v-row class="mx-0 mb-3" justify="center">

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-img :src="imageUrl" width="600px" height="300px">
+    <v-img :lazy-src="loadingImage" :src="tempImage" height="300px" width="600px">
       <template v-slot:placeholder>
         <v-row class="fill-height ma-0" align="center" justify="center">
           <v-progress-circular
@@ -14,7 +14,7 @@
     <v-row>
       <v-col class="pt-2">
         <v-card-subtitle class="pa-0 image-src">
-          Image source: {{ imageUrl }}
+          Image source: {{ viewingRestaurant.imageUrl }}
         </v-card-subtitle>
       </v-col>
     </v-row>
@@ -139,9 +139,8 @@
     },
 
     data: () => ({
-      imageUrl:
-        'https://static.rootsrated.com/image/upload/s--LbVVifxy--/t_rr_large_natural/a582hei6yo6itc6fvdjl.jpg',
-
+      tempImage: 'https://bad.src/not/valid',
+      loadingImage: 'https://picsum.photos/id/11/100/60',
       snapeeLogo: require('@/assets/snapee-logo-no-text.png'),
 
       toggleAcceptAlertModal: false,
