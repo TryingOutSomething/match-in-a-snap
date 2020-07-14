@@ -11,12 +11,12 @@ export const INPUT_FOCUS_BORDER_COLOUR = 'yellow darken-3',
 
 // Constants for form input
 export const DIETARY_OPTIONS = [
+    'Asian',
+    'Western',
+    'European',
     'Vegetarian',
-    'Non beef',
-    'No Spicy',
-    'Halal',
-    'Chinese',
-    'Gluten-Free'
+    'Vegan',
+    'Halal'
   ],
   MEAL_OPTIONS = ['Breakfast', 'Lunch', 'Dinner'],
   GENDER_OPTIONS = ['Male', 'Female', 'Rather Not Say'];
