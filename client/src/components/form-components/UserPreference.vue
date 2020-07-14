@@ -43,32 +43,39 @@
           </v-row>
         </v-col>
 
-        <v-col class="pb-0" cols="12" sm="11">
+      </v-row>
+
+      <v-row justify="center">
+        <v-col class="pb-0" cols="11" sm="11">
           <v-card-text class="pb-1 font-italic">I'm having</v-card-text>
         </v-col>
-        <v-col cols="5" sm="10">
+        <v-col cols="6" sm="10">
           <v-row justify="center">
             <v-chip-group
               column
               :active-class="chipSelectedColour"
               v-model="userPreference.mealChoice"
             >
-              <v-chip
-                class="mx-4 my-2 px-5"
-                v-for="choice in meals"
-                :value="choice.toLowerCase()"
-                :key="choice"
-              >
-                {{ choice }}
-              </v-chip>
+              <v-row justify="center">
+                <v-chip
+                  :key="choice"
+                  :value="choice.toLowerCase()"
+                  class="mx-4 my-2 px-5"
+                  v-for="choice in meals"
+                >
+                  {{ choice }}
+                </v-chip>
+              </v-row>
             </v-chip-group>
           </v-row>
         </v-col>
+      </v-row>
 
+      <v-row justify="center">
         <v-col class="pb-0" sm="11" cols="11">
           <v-card-text class="pb-1 font-italic">I prefer</v-card-text>
         </v-col>
-        <v-col class="ml-6" cols="6" sm="10">
+        <v-col cols="12" sm="10">
           <v-row justify="center">
             <v-chip-group
               multiple
@@ -76,14 +83,16 @@
               :active-class="chipSelectedColour"
               v-model="userPreference.dietaryOptions"
             >
-              <v-chip
-                class="mx-4 my-2 px-5"
-                v-for="option in dietaryOptions"
-                :value="option"
-                :key="option"
-              >
-                {{ option }}
-              </v-chip>
+              <v-row justify="center">
+                <v-chip
+                  :key="option"
+                  :value="option"
+                  class="mx-4 my-2 px-5"
+                  v-for="option in dietaryOptions"
+                >
+                  {{ option }}
+                </v-chip>
+              </v-row>
             </v-chip-group>
           </v-row>
         </v-col>
