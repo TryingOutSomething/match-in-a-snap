@@ -118,7 +118,7 @@
   import * as formConstants from '@/constants/form-constants';
   import * as validationUtil from '@/utils/validation';
   import { persistUserPreference } from '@/utils/local-storage';
-  import BaseTextField from '../core/BaseTextField';
+  import BaseTextField from '@/components/core/BaseTextField';
 
   export default {
     name: 'UserPreference',
