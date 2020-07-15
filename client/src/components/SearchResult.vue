@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-img :lazy-src="loadingImage" :src="tempImage" height="300px" width="600px">
+    <v-img :lazy-src="loadingImage" :src="hasImageUrl" height="250px" width="600px">
       <template v-slot:placeholder>
         <v-row class="fill-height ma-0" align="center" justify="center">
           <v-progress-circular
@@ -14,7 +14,7 @@
     <v-row>
       <v-col class="pt-2">
         <v-card-subtitle class="pa-0 image-src">
-          Image source: {{ viewingRestaurant.imageUrl }}
+          Image source: {{ viewingRestaurant.imageUrl || 'No image available' }}
         </v-card-subtitle>
       </v-col>
     </v-row>
@@ -139,7 +139,7 @@
     },
 
     data: () => ({
-      tempImage: 'https://bad.src/not/valid',
+      placeholderImage: require('@/assets/placeholder.jpg'),
       loadingImage: 'https://picsum.photos/id/11/100/60',
       snapeeLogo: require('@/assets/snapee-logo-no-text.png'),
 
@@ -155,6 +155,10 @@
 
       isValidWebsite() {
         return this.viewingRestaurant.website !== 'No website information';
+      },
+
+      hasImageUrl() {
+        return this.viewingRestaurant.imageUrl || this.placeholderImage;
       }
     },
 
