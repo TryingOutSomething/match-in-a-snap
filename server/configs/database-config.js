@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const config = {
   options: {
     useNewUrlParser: true,
