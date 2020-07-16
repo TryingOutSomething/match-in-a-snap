@@ -27,7 +27,7 @@ const isValidRestaurantParams = (req, res, next) => {
   }
 
   if ('dietaryOptions' in requestQueries) {
-    req.query.dietaryOptions = req.query.dietaryOptions.split(', ');
+    req.query.dietaryOptions = Object.values(req.query.dietaryOptions);
   } else {
     req.query.dietaryOptions = null;
   }

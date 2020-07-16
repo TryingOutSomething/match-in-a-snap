@@ -23,7 +23,12 @@
 
 <script>
 export default {
-  name: "LoadingScreen"
+  name: 'LoadingScreen',
+  metaInfo() {
+    return {
+      titleTemplate: '%s'
+    };
+  }
 };
 </script>
 

@@ -119,7 +119,12 @@
 
 <script>
 export default {
-  name: "TermsOfUse"
+  name: 'TermsOfUse',
+  metaInfo() {
+    return {
+      titleTemplate: '%s | TOU',
+    };
+  }
 };
 </script>
 

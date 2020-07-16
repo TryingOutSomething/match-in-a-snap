@@ -10,10 +10,10 @@ const apiClient = axios.create({
 
 export default {
   getNearbyRestaurants(userPreference) {
-    const { postalCode, dietaryChoice, mealChoice, currentPage } = userPreference;
+    const { postalCode, dietaryOptions, mealChoice, currentPage } = userPreference;
 
     return apiClient.get('/locations', {
-      params: { postalCode, dietaryChoice, mealChoice, currentPage }
+      params: { postalCode, dietaryOptions, mealChoice, currentPage }
     });
   },
 
