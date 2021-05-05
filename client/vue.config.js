@@ -20,6 +20,6 @@ module.exports = {
       errors: true
     }
   },
-  publicPath: process.env.NODE_ENV === 'production' ? '/matchInASnap' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/match-in-a-snap' : '/',
   productionSourceMap: false
 };
