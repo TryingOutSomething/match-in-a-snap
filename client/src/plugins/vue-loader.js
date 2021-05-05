@@ -1,5 +1,5 @@
 import Vue from "vue";
 import "vue-loaders/dist/vue-loaders.css";
-import VueLoadersBallPulse from "vue-loaders/dist/loaders/ball-pulse";
+import VueLoadersPacMan from "vue-loaders/dist/loaders/pacman";
 
-Vue.use(VueLoadersBallPulse);
+Vue.use(VueLoadersPacMan);

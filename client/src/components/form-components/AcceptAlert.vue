@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import api from '@/services/api';
+  import { persistUserPreference } from '@/utils/local-storage';
   import { mapActions, mapState } from 'vuex';
   import { FEEDBACK_URL } from '@/constants/url-constants';
   import { getUserPreference } from '@/utils/local-storage';
@@ -59,7 +59,7 @@
       saveUserAcceptedChoice() {
         let confirmUserPreference = this.buildConfirmedUserPreference();
 
-        api.saveUserChoice(confirmUserPreference).catch(err => console.log(err.response));
+        persistUserPreference(confirmUserPreference);
       },
 
       buildConfirmedUserPreference() {

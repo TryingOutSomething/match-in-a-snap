@@ -1,24 +1,18 @@
-import api from '@/services/api';
+import { FETCH_RESTAURANTS as fetchRestaurants } from '@/services/mock-api';
 
 export default {
   SEARCH_RESTAURANTS({ commit }, userPreference) {
     return new Promise((resolve, reject) => {
       commit('SET_LOADING_FORM_STATUS', null, { root: true });
 
-      api.getNearbyRestaurants(userPreference)
-         .then(response => {
-           let restaurantList = response.data;
+      fetchRestaurants()
+        .then(response => {
+          commit('POPULATE_SEARCH_RESULTS', response);
+          commit('SET_RESULT_FORM_STATUS', null, { root: true });
 
-           if (restaurantList.length <= 0) {
-             return reject('No restaurants from response');
-           }
-
-           commit('POPULATE_SEARCH_RESULTS', response.data);
-           commit('SET_RESULT_FORM_STATUS', null, { root: true });
-
-           resolve();
-         })
-         .catch(err => reject(err.response.data));
+          resolve();
+        })
+        .catch(err => reject(err));
     });
   },
 

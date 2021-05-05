@@ -6,7 +6,6 @@ export default {
 
     state.restaurantList = restaurants;
     state.viewingRestaurant = Object.assign({}, viewingRestaurant);
-    // populate list and set the first one as viewing
   },
 
   DISPLAY_NEXT_RESTAURANT(state) {

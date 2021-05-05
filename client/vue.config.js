@@ -1,16 +1,16 @@
 module.exports = {
-  transpileDependencies: ["vuetify"],
+  transpileDependencies: ['vuetify'],
 
   devServer: {
-    host: "localhost",
+    host: 'localhost',
     hot: true,
     port: 8080,
-    open: "Chrome",
+    open: 'Chrome',
     disableHostCheck: true,
     proxy: {
-      "^/api": {
+      '^/api': {
         disableHostCheck: true,
-        target: "http://localhost:5000",
+        target: 'http://localhost:5000',
         secure: false,
         changeOrigin: true
       }
@@ -19,5 +19,7 @@ module.exports = {
       warnings: true,
       errors: true
     }
-  }
+  },
+  publicPath: process.env.NODE_ENV === 'production' ? '/matchInASnap' : '/',
+  productionSourceMap: false
 };

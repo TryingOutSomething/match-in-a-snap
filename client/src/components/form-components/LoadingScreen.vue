@@ -3,10 +3,7 @@
     <v-row>
       <v-col>
         <v-row justify="center" class="pa-12">
-          <vue-loaders-ball-pulse
-            color="#616161"
-            scale="1"
-          ></vue-loaders-ball-pulse>
+          <vue-loaders-pacman color="#616161" scale="1"/>
         </v-row>
 
         <v-row justify="center">

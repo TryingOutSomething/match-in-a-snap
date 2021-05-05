@@ -1,0 +1,47 @@
+[
+  {
+    "name": "So Pho (Vivo City)",
+    "address": "Vivocity, 1 Harbourfront Walk #01-171, 098585",
+    "businessHours": "Daily: 11:00 - 22:00",
+    "phone": "+65 62521770",
+    "deliveryOptions": "Food Panda",
+    "website": "http://www.sopho.com.sg",
+    "imageUrl": "https://www.sopho.com.sg/wp-content/uploads/2016/09/2x2_2-So-Pho-2.jpg"
+  },
+  {
+    "name": "Ichikokudo Hokkaido Ramen (Suntec City Mall)",
+    "address": "Suntec City Mall, 3 Temasek Boulevard #B1-135, 038983",
+    "businessHours": "Daily: 11:00 - 22:00, Last order: 9.30pm",
+    "phone": "+65 62730048",
+    "deliveryOptions": "Grab Food",
+    "website": "https://www.ichikokudo.com/",
+    "imageUrl": "https://sethlui.com/wp-content/uploads/2018/12/Ichikokudo-Hokkaido-Ramen-18.jpg"
+  },
+  {
+    "name": "LingZhi Vegetarian Restaurant (Novena Velocity) (灵芝)",
+    "address": "Novena Velocity, 238 Thomson Road #03-09/10, 307683",
+    "businessHours": "Mon - Fri: Lunch: 11:00-15:00, Dinner: 18:00-22:00, Sat, Sun & PH: Lunch: 11:00-15:00, Hi-Tea: 15:00-17:00, Dinner: 18:00-22:00",
+    "phone": "+65 65382992",
+    "deliveryOptions": "Food Panda",
+    "website": "No website information",
+    "imageUrl": "https://i.hungrygowhere.com/business/5f/57/11/00/lingzhi-vegetarian-restaurant-1991-.jpg"
+  },
+  {
+    "name": "The Living Cafe & Deli",
+    "address": "779 Bukit Timah Road, 269758",
+    "businessHours": "Mon - Thu: 11:00 - 19:00, Fri: 11:00 - 22:00, Sat: 09:00 - 22:00, Sun: 09:00 - 20:00",
+    "phone": "+65 64684482",
+    "deliveryOptions": "No delivery information",
+    "website": "No website information",
+    "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-s/0e/33/69/f7/food.jpg"
+  },
+  {
+    "name": "A*MUSE ZiChar + Bistro Concept @ Dleedon",
+    "address": "D'leedon, 19 Leedon Heights #01-66, 266227",
+    "businessHours": "Daily: 11:00 - 21:00",
+    "phone": "+65 64631169",
+    "deliveryOptions": "Grab Food",
+    "website": "https://www.amuse.sg/",
+    "imageUrl": null
+  }
+]
