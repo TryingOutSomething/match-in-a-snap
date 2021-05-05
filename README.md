@@ -8,7 +8,7 @@ Ltd.
 This service was built to recommend various restaurants to users that are tired of not knowing what to eat every day.
 
 The website recommends the nearest restaurants base on the **(Singapore)** postal code and dietary preferences entered
-by users. Check it out here!
+by users. [Check it out here!](https://tryingoutsomething.github.io/match-in-a-snap/)
 
 ### Disclaimer
 
